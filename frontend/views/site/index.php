@@ -19,7 +19,7 @@ $this->title = 'Photogram';
             <div class="col-lg-12">
 
                 <? foreach ($users as $user): ?>
-                <a href="<? echo Url::to(['user/profile/view', 'id' => $user->id]); ?>">
+                <a href="<? echo Url::to(['user/profile/view', 'nickname' => $user->getNickname()]); ?>">
                 <? echo "<hr><p style='font-size: 20px'>".$user->username."</p><hr>"; ?>
                 </a>
                 <? endforeach; ?>
