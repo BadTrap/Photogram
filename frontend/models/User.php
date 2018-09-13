@@ -210,4 +210,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->nickname ? $this->nickname : $this->id;
     }
+
+    /**
+     * Subscribe current user to given user
+     * @param \frontend\models\User $user
+     */
+    public function followUser(User $user)
+    {
+        /* @var $redis Connection */
+        $redis = Yii::$app->redis;
+        $redis->sadd("user:{$this->getId()}:subscriptions", $user->getId());
+        $redis->sadd("user:{$user->getId()}:followers", $this->getId());
+    }
 }
