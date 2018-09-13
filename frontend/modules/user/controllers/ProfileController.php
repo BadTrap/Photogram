@@ -65,6 +65,8 @@ class ProfileController extends Controller
         return $this->redirect(['/user/profile/view', 'nickname' => $user->getNickname()]);
     }
 
+
+
     /**
      * @param integer $nickname
      * @return User
