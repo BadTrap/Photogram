@@ -8,12 +8,12 @@ namespace frontend\modules\post;
 class Module extends \yii\base\Module
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public $controllerNamespace = 'frontend\modules\post\controllers';
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function init()
     {

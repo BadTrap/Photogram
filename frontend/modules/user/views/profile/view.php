@@ -15,7 +15,7 @@ use dosamigos\fileupload\FileUpload;
 <p><?php echo HtmlPurifier::process($user->about); ?></p>
 <hr>
 
-<img src="<?php echo $user->getPicture(); ?>" id="profile-picture" />
+<img  height="420px"  src="<?php echo $user->getPicture(); ?>" id="profile-picture" />
 
 <?php if ($currentUser && $currentUser->equals($user)): ?>
 

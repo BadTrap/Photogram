@@ -4,6 +4,7 @@ namespace frontend\models;
 
 use Yii;
 
+use frontend\models\User;
 
 /**
  * This is the model class for table "post".
@@ -16,17 +17,17 @@ use Yii;
  */
 class Post extends \yii\db\ActiveRecord
 {
+
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function tableName()
     {
         return 'post';
     }
 
-
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function attributeLabels()
     {
@@ -44,16 +45,14 @@ class Post extends \yii\db\ActiveRecord
         return Yii::$app->storage->getFile($this->filename);
     }
 
+    /**
+     * Get author of the post
+     * @return User|null
+     */
     public function getUser()
     {
-        return $this->hasOne(User::className(),['id'=> 'user_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
 
     /**
      * Like current post by given user
@@ -79,6 +78,10 @@ class Post extends \yii\db\ActiveRecord
         $redis->srem("user:{$user->getId()}:likes", $this->getId());
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return mixed

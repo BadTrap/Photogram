@@ -29,8 +29,8 @@ class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
-    const DEFAULT_IMAGE = '/img/profile_default_image.png';
 
+    const DEFAULT_IMAGE = '/img/profile_default_image.jpg';
 
     /**
      * @inheritdoc
@@ -298,5 +298,27 @@ class User extends ActiveRecord implements IdentityInterface
         return self::DEFAULT_IMAGE;
     }
 
+    /**
+     * Get data for newsfeed
+     * @param integer $limit
+     * @return array
+     */
+    public function getFeed($limit)
+    {
+        $order = ['post_created_at' => SORT_DESC];
+        return $this->hasMany(Feed::className(), ['user_id' => 'id'])->orderBy($order)->limit($limit)->all();
+    }
+
+    /**
+     * Check whether current user likes post with given id
+     * @param integer $postId
+     * @return boolean
+     */
+    public function likesPost($postId)
+    {
+        /* @var $redis Connection */
+        $redis = Yii::$app->redis;
+        return (bool) $redis->sismember("user:{$this->getId()}:likes", $postId);
+    }
 
 }
