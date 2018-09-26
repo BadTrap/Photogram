@@ -6,7 +6,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
-
+use frontend\components\Storage;
 /**
  * User model
  *
@@ -293,9 +293,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function getPicture()
     {
         if ($this->picture) {
-            return Yii::$app->storage->getFile($this->picture);
+//            echo "<pre>";
+//            var_dump($this->picture);
+//            echo "</pre>";
+            return  Yii::$app->storage->getFile($this->picture);
+
         }
         return self::DEFAULT_IMAGE;
+
     }
 
     /**

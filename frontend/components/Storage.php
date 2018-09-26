@@ -78,8 +78,8 @@ class Storage extends Component implements StorageInterface
      * @param string $filename
      * @return string
      */
-    public function getFile(string $filename)
+    public function getFile($filename)
     {
-        return Yii::$app->params['storageUri'].$filename;
+        return (string) Yii::$app->params['storageUri'].$filename;
     }
 }
