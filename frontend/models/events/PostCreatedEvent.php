@@ -20,12 +20,12 @@ class PostCreatedEvent extends Event
      */
     public $post;
 
-    public function getUser(): User
+    public function getUser()
     {
         return $this->user;
     }
 
-    public function getPost(): Post
+    public function getPost()
     {
         return $this->post;
     }

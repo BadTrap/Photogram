@@ -303,16 +303,6 @@ class User extends ActiveRecord implements IdentityInterface
 
     }
 
-    /**
-     * Get data for newsfeed
-     * @param integer $limit
-     * @return array
-     */
-    public function getFeed($limit)
-    {
-        $order = ['post_created_at' => SORT_DESC];
-        return $this->hasMany(Feed::className(), ['user_id' => 'id'])->orderBy($order)->limit($limit)->all();
-    }
 
     /**
      * Check whether current user likes post with given id
@@ -326,4 +316,16 @@ class User extends ActiveRecord implements IdentityInterface
         return (bool) $redis->sismember("user:{$this->getId()}:likes", $postId);
     }
 
+
+
+    /**
+     * Get data for newsfeed
+     * @param integer $limit
+     * @return array
+     */
+    public function getFeed($limit)
+    {
+        $order = ['post_created_at' => SORT_DESC];
+        return $this->hasMany(Feed::className(), ['user_id' => 'id'])->orderBy($order)->limit($limit)->all();
+    }
 }
