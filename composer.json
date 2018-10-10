@@ -23,7 +23,9 @@
         "yiisoft/yii2-redis": "~2.0.0",
         "2amigos/yii2-file-upload-widget": "~1.0",
         "intervention/image": "^2.4",
-        "tpmanc/yii2-imagick": "*"
+        "tpmanc/yii2-imagick": "*",
+        "rmrevin/yii2-fontawesome": "~3.2",
+        "bower-asset/font-awesome": "4.4.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
